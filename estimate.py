@@ -1,5 +1,32 @@
 import math
 import unittest
+import random
+
+def wallis(n):
+    pi = 0.0
+    for i in range(1,n):
+        x = 4*(i**2)
+        y = x-1
+        z = float(x)/float(y)
+        if(i==1):
+            pi = z
+        else:
+            pi *= z
+    pi *= 2
+    return pi
+
+def monte_carlo(n):
+    circle = 0
+    square = 0
+    for i in range(n):
+        x = random.random()
+        y = random.random()
+        if math.sqrt((x)**2+(y)**2)<=1:
+            circle+=1
+            square+=1
+        else:
+            square+=1
+    return 4*float(circle/square)
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
